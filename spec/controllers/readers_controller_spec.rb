@@ -1,23 +1,14 @@
-require 'rails_helper'
+      it "renders new template" do
+        expect(reponse).to render_template :new
+      end
 
-describe ReadersController do
-  describe "GET new" do
-    let!(:reader) { mock_model("Reader").as_new_record }
+      it "assigns readers to be readers" do
+        expect(assigns[:reader]).to eq(reader)  #assign reader to be @reader
+      end
 
-    before :each do
-      Reader.stub(:new).and_return(reader)
-    end
-
-    it "assigns @reader variable to the view" do
-      get :new
-
-      expect(assigns[:reader]).to eq(reader)
-    end
-
-    it "renders new template" do
-      get :new
-
-      expect(response).to render_template :new
+      it "assigns error flash message" do
+        expect(flash[:error]).not_to be_nil
+      end
     end
   end
 end
